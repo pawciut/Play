@@ -8,9 +8,17 @@ public static class SettingsManager
 
     public static System.Object GetSetting(ESetting key)
     {
+        return GetSetting<System.Object>(key);
+        //lock (s_setting)
+        //{
+        //    return s_setting.GetSettingNotNull(key);
+        //}
+    }
+    public static T GetSetting<T>(ESetting key)
+    {
         lock (s_setting)
         {
-            return s_setting.GetSettingNotNull(key);
+            return (T)s_setting.GetSettingNotNull(key);
         }
     }
 
