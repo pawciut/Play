@@ -18,9 +18,15 @@ public class SOptionsController : MonoBehaviour
     // Update is called once per frame
     protected virtual void Update()
     {
+
         if (timer == 0)
         {
-            if (Input.GetAxis("Horizontal") > DpadSensitivity) //Right
+            if(Input.GetAxis("Submit") > 0)
+            {
+                ToggleSubmit();
+                timer = TimeBetweenInputs;
+            }
+            else if (Input.GetAxis("Horizontal") > DpadSensitivity) //Right
             {
                 ToggleRight();
                 timer = TimeBetweenInputs;
@@ -34,14 +40,32 @@ public class SOptionsController : MonoBehaviour
         if (timer > 0) { timer -= Time.deltaTime; } else { timer = 0; }
     }
 
+    public virtual void ToggleSubmit()
+    {
+        Debug.Log("Submit:");
+        OnSettingOperation(ESettingOperation.Toggle);
+    }
+
     public virtual void ToggleLeft()
     {
         Debug.Log("ToggleLeft");
+        OnSettingOperation(ESettingOperation.ToggleLeft);
     }
 
     public virtual void ToggleRight()
     {
         Debug.Log("ToggleRight");
+        OnSettingOperation(ESettingOperation.ToggleRight);
+    }
 
+    public virtual void HandleSetting(SettingOperationArgs e)
+    {
+    }
+
+    void OnSettingOperation(ESettingOperation operation)
+    {
+        OptionButton button = EventSystem.current.currentSelectedGameObject.GetComponent<OptionButton>();
+        if (button != null)
+            HandleSetting(new SettingOperationArgs(button.Setting, operation));
     }
 }

@@ -26,27 +26,8 @@ public class SOptionsGraphicsController : SOptionsController
         base.Update();
     }
 
-    public override void ToggleLeft()
-    {
-        base.ToggleLeft();
+    
 
-        OptionButton button = EventSystem.current.currentSelectedGameObject.GetComponent<OptionButton>();
-        if (button != null)
-            HandleSetting(new SettingOperationArgs(ESetting.FullScreen, ESettingOperation.ToggleLeft));
-    }
-    public override void ToggleRight()
-    {
-        base.ToggleRight();
-
-        OptionButton button = EventSystem.current.currentSelectedGameObject.GetComponent<OptionButton>();
-        if (button != null)
-            HandleSetting(new SettingOperationArgs(ESetting.FullScreen, ESettingOperation.ToggleRight));
-    }
-
-    public void ToggleFullscreen()
-    {
-        HandleSetting(new  SettingOperationArgs(ESetting.FullScreen, ESettingOperation.Toggle));
-    }
 
     void AdjustGraphic()
     {
@@ -55,7 +36,7 @@ public class SOptionsGraphicsController : SOptionsController
             SettingUtils.FormatResolution( Screen.width, Screen.height));
     }
 
-    public void HandleSetting(SettingOperationArgs e)
+    public override void HandleSetting(SettingOperationArgs e)
     {
         switch (e.Setting)
         {
