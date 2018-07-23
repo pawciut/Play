@@ -5,7 +5,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System;
 
-public class SettingParserTests
+public class SettingUtilsTests
 {
     [Test]
     public void ShouldParseResolutionForProperFormat()

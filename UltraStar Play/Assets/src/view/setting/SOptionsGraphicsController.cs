@@ -15,9 +15,8 @@ public class SOptionsGraphicsController : SOptionsController
     // Use this for initialization
     void Start()
     {
+        InitServices();
         AdjustGraphic();
-        FullscreenDisplayValue.text = SettingUtils.ToYesNo(SettingsManager.GetSetting<bool>(ESetting.FullScreen));
-
     }
 
     // Update is called once per frame
@@ -26,14 +25,15 @@ public class SOptionsGraphicsController : SOptionsController
         base.Update();
     }
 
-    
-
-
+    /// <summary>
+    /// Set current settings and view to application state (when resolution dialog is displayed before game starts)
+    /// </summary>
     void AdjustGraphic()
     {
         SettingsManager.SetSetting(ESetting.FullScreen, Screen.fullScreen);
         SettingsManager.SetSetting(ESetting.Resolution,
-            SettingUtils.FormatResolution( Screen.width, Screen.height));
+            SettingUtils.FormatResolution(Screen.width, Screen.height));
+        FullscreenDisplayValue.text = SettingUtils.ToYesNo(Screen.fullScreen);//SettingUtils.ToYesNo(SettingsManager.GetSetting<bool>(ESetting.FullScreen));
     }
 
     public override void HandleSetting(SettingOperationArgs e)
@@ -46,7 +46,6 @@ public class SOptionsGraphicsController : SOptionsController
             default:
                 break;
         }
-
     }
 
     void HandleFullScreen(SettingOperationArgs e)

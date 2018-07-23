@@ -2,7 +2,16 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public static class SettingsManager
+
+public interface ISettingsManager
+{
+    T GetSetting<T>(ESetting key);
+
+    void SetSetting(ESetting key, System.Object settingValue);
+}
+
+
+public static class SettingsManager //: ISettingsManager
 {
     private static GameSetting s_setting = new GameSetting();
 

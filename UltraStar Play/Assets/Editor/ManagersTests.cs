@@ -4,6 +4,7 @@ using NUnit.Framework;
 
 using System.Collections;
 using System.Collections.Generic;
+using Moq;
 
 public class ManagersTests
 {
@@ -58,5 +59,12 @@ public class ManagersTests
         Assert.IsFalse((bool)SettingsManager.GetSetting(ESetting.FullScreen));
     }
 
-  
+    public void TestSubmit()
+    {
+        SOptionsGraphicsController controller = new SOptionsGraphicsController();
+        Mock<IUnityService> unityServiceMock = new Mock<IUnityService>();
+        //unityService.GetAxis("Submit").Returns(1);
+        //IOptionsService optionsService = Substitute.For<IOptionsService>();
+
+    }
 }

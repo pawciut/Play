@@ -9,10 +9,26 @@ public class SOptionsController : MonoBehaviour
     protected virtual float DpadSensitivity { get; set; } //Axis range 0-1
     private float timer = 0;
 
+    public IUnityService unityService;
+    public IOptionsService optionsService;
+    
     private void Awake()
     {
         TimeBetweenInputs = 0.35f;
         DpadSensitivity = 0.5f;
+    }
+
+    void Start()
+    {
+        InitServices();
+    }
+
+    public void InitServices()
+    {
+        if (unityService == null)
+            unityService = new UnityService();
+        if (optionsService == null)
+            optionsService = new OptionsService();
     }
 
     // Update is called once per frame
@@ -21,17 +37,17 @@ public class SOptionsController : MonoBehaviour
 
         if (timer == 0)
         {
-            if(Input.GetAxis("Submit") > 0)
+            if(unityService.GetAxis("Submit") > 0)
             {
                 ToggleSubmit();
                 timer = TimeBetweenInputs;
             }
-            else if (Input.GetAxis("Horizontal") > DpadSensitivity) //Right
+            else if (unityService.GetAxis("Horizontal") > DpadSensitivity) //Right
             {
                 ToggleRight();
                 timer = TimeBetweenInputs;
             }
-            else if (Input.GetAxis("Horizontal") < -DpadSensitivity) //Left
+            else if (unityService.GetAxis("Horizontal") < -DpadSensitivity) //Left
             {
                 ToggleLeft();
                 timer = TimeBetweenInputs;
@@ -64,7 +80,7 @@ public class SOptionsController : MonoBehaviour
 
     void OnSettingOperation(ESettingOperation operation)
     {
-        OptionButton button = EventSystem.current.currentSelectedGameObject.GetComponent<OptionButton>();
+        OptionButton button = optionsService.GetCurrent();
         if (button != null)
             HandleSetting(new SettingOperationArgs(button.Setting, operation));
     }
