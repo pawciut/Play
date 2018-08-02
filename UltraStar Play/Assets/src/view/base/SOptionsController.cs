@@ -14,8 +14,8 @@ public class SOptionsController : MonoBehaviour
     
     private void Awake()
     {
-        TimeBetweenInputs = 0.35f;
-        DpadSensitivity = 0.5f;
+        TimeBetweenInputs = 0.20f;
+        DpadSensitivity = 0.01f;//with adjustments to GetAxisRaw * Time.deltaTime, previously was 0.5f but keyboard was lagging because of this without AxisRaw;
     }
 
     void Start()
@@ -37,17 +37,17 @@ public class SOptionsController : MonoBehaviour
 
         if (timer == 0)
         {
-            if(unityService.GetAxis("Submit") > 0)
+            if(unityService.GetAxisRaw("Submit") > 0)
             {
                 ToggleSubmit();
                 timer = TimeBetweenInputs;
             }
-            else if (unityService.GetAxis("Horizontal") > DpadSensitivity) //Right
+            else if (unityService.GetAxisRaw("Horizontal") * Time.deltaTime > DpadSensitivity) //Right
             {
                 ToggleRight();
                 timer = TimeBetweenInputs;
             }
-            else if (unityService.GetAxis("Horizontal") < -DpadSensitivity) //Left
+            else if (unityService.GetAxisRaw("Horizontal") * Time.deltaTime < -DpadSensitivity) //Left
             {
                 ToggleLeft();
                 timer = TimeBetweenInputs;
@@ -58,19 +58,19 @@ public class SOptionsController : MonoBehaviour
 
     public virtual void ToggleSubmit()
     {
-        Debug.Log("Submit:");
+        Debug.Log("Submit:" + System.DateTime.Now.ToLongTimeString());
         OnSettingOperation(ESettingOperation.Toggle);
     }
 
     public virtual void ToggleLeft()
     {
-        Debug.Log("ToggleLeft");
+        Debug.Log("ToggleLeft:"+System.DateTime.Now.ToLongTimeString());
         OnSettingOperation(ESettingOperation.ToggleLeft);
     }
 
     public virtual void ToggleRight()
     {
-        Debug.Log("ToggleRight");
+        Debug.Log("ToggleRight:" + System.DateTime.Now.ToLongTimeString());
         OnSettingOperation(ESettingOperation.ToggleRight);
     }
 
