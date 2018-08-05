@@ -42,6 +42,10 @@ public class SOptionsGraphicsController : SOptionsController
     {
         InitServices();
         AdjustGraphic();
+        AdjustResolutionIndex();
+
+        UpdateResolutionText();
+        UpdateFullScreenText(Screen.fullScreen);
     }
 
     // Update is called once per frame
@@ -58,10 +62,6 @@ public class SOptionsGraphicsController : SOptionsController
         SettingsManager.SetSetting(ESetting.FullScreen, Screen.fullScreen);
         SettingsManager.SetSetting(ESetting.Resolution,
             SettingUtils.FormatResolution(Screen.width, Screen.height));
-        AdjustResolutionIndex();
-
-        UpdateResolutionText();
-        UpdateFullScreenText(Screen.fullScreen);
     }
 
     void AdjustResolutionIndex()
@@ -109,20 +109,12 @@ public class SOptionsGraphicsController : SOptionsController
     {
         int width = _supportedResolutions[_currentResolutionIndex.Value, 0];//Screen.currentResolution.width;
         int height = _supportedResolutions[_currentResolutionIndex.Value, 1];//Screen.currentResolution.height;
-
-        //System.Object resolutionSetting = SettingsManager.GetSetting(ESetting.Resolution);
-        //SettingUtils.ParseResolution(resolutionSetting, out width, out height);
-
-        System.Object fullScreenSetting = SettingsManager.GetSetting(ESetting.FullScreen);
-
-        bool fullScreen;
-        SettingUtils.ParseBool(fullScreenSetting, out fullScreen);
-
-
+        
+        bool fullScreen = SettingsManager.GetSetting<bool>(ESetting.FullScreen);
         fullScreen = !fullScreen;
 
         SettingsManager.SetSetting(ESetting.FullScreen, fullScreen);
-        FullscreenDisplayValue.text = SettingUtils.ToYesNo(fullScreen);
+        UpdateFullScreenText(fullScreen);
         Screen.SetResolution(width, height, fullScreen);
     }
 
@@ -131,10 +123,7 @@ public class SOptionsGraphicsController : SOptionsController
     {
         if (e.Operation == ESettingOperation.Toggle)
         {
-            System.Object fullScreenSetting = SettingsManager.GetSetting(ESetting.FullScreen);
-
-            bool fullScreen;
-            SettingUtils.ParseBool(fullScreenSetting, out fullScreen);
+            bool fullScreen = SettingsManager.GetSetting<bool>(ESetting.FullScreen);
 
             Screen.SetResolution(
                 _supportedResolutions[_currentResolutionIndex.Value, 0],
