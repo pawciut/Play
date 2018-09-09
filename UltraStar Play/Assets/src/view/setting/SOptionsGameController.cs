@@ -10,7 +10,7 @@ using UnityEngine.EventSystems;
 
 public class SOptionsGameController : SOptionsController
 {
-    public Text DebugDisplayValue;//test
+    public Text DebugDisplayValue;
 
     // Use this for initialization
     void Start()
