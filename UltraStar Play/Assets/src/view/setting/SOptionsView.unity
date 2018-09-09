@@ -343,6 +343,11 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 91822fedc9716b94f982c13caff25152, type: 2}
   m_IsPrefabParent: 0
+--- !u!1 &74959392 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1670175838279812, guid: 91822fedc9716b94f982c13caff25152,
+    type: 2}
+  m_PrefabInternal: {fileID: 74959391}
 --- !u!1001 &89804442
 Prefab:
   m_ObjectHideFlags: 0
@@ -388,7 +393,7 @@ Prefab:
     - target: {fileID: 224477561056662092, guid: 91822fedc9716b94f982c13caff25152,
         type: 2}
       propertyPath: m_RootOrder
-      value: 14
+      value: 13
       objectReference: {fileID: 0}
     - target: {fileID: 224477561056662092, guid: 91822fedc9716b94f982c13caff25152,
         type: 2}
@@ -800,11 +805,6 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 91822fedc9716b94f982c13caff25152, type: 2}
   m_IsPrefabParent: 0
---- !u!1 &226039327 stripped
-GameObject:
-  m_PrefabParentObject: {fileID: 1670175838279812, guid: 91822fedc9716b94f982c13caff25152,
-    type: 2}
-  m_PrefabInternal: {fileID: 226039326}
 --- !u!224 &226039328 stripped
 RectTransform:
   m_PrefabParentObject: {fileID: 224477561056662092, guid: 91822fedc9716b94f982c13caff25152,
@@ -982,7 +982,7 @@ RectTransform:
   m_Children:
   - {fileID: 1560249585}
   m_Father: {fileID: 1040045159}
-  m_RootOrder: 4
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -1878,9 +1878,9 @@ RectTransform:
   m_Children:
   - {fileID: 283688519}
   - {fileID: 291034883}
+  - {fileID: 417341532}
   - {fileID: 226039328}
   - {fileID: 700566360}
-  - {fileID: 417341532}
   - {fileID: 1367695797}
   - {fileID: 738063553}
   - {fileID: 606937449}
@@ -2400,7 +2400,7 @@ MonoBehaviour:
   m_Script: {fileID: -619905303, guid: f70555f144d8491a825f0804e09c671c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_FirstSelected: {fileID: 226039327}
+  m_FirstSelected: {fileID: 74959392}
   m_sendNavigationEvents: 1
   m_DragThreshold: 5
 --- !u!4 &1573681598
