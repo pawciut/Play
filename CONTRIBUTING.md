@@ -28,12 +28,12 @@ This project just started! Please wait for the first few versions to be released
 - Update documentation where necessary, write documentation when required. Use this repositories' wiki when targeting users / players of this game. Write green code or text files when targeting other developers.
 
 ## Requirements for code contributions to master branch
-- try to only contribute working code, no dead code, no "soon to be used" code and no "will fix is soon" code
+- try to only contribute working code, no dead code, no "soon to be used" code and no "will fix it soon" code
 - for C# code, follow the usual C# / .Net coding style rules from Microsoft and Unity
 - only strictly typed variables
 - camelCase: parameter, 
 - PascalCase: Method, Class, EEnum, NameSpace, Property, IInterface
-- prefixes: E for enums, I for interfaces, m_ for members
+- prefixes: E for enums, I for interfaces, m_ for members, S for scenes
 - no acronyms, except for the above mentioned prefixes
 - only use public where necessary, use static/readonly where possible, avoid protected
 - no huge methods, try to reduce complexity, write readable code -> see [Clean Code Cheat Sheet](https://www.bbv.ch/images/bbv/pdf/downloads/V2_Clean_Code_V3.pdf)
